@@ -8,10 +8,10 @@ urllib3.disable_warnings()
 
 class HttpTool:
     @staticmethod
-    def get(url, params=None, headers=None, retFormat='text', timeout=10):
+    def get(url, params=None, headers=None, retFormat='text', timeout=10, allow_redirects=True):
         res = None
         try:
-            res = requests.get(url, params=params, headers=headers, timeout=timeout)
+            res = requests.get(url, params=params, headers=headers, timeout=timeout, allow_redirects=allow_redirects)
         except:
             traceback.print_exc()
         return HttpTool.beforeReturn(res, retFormat), res.status_code

@@ -9,7 +9,7 @@ base_url = 'https://www.tianyancha.com/company/'
 
 def get_company_text(cid):
     url = base_url + str(cid)
-    html, status_code = HttpTool.get(url, headers=headers, retFormat='text')
+    html, status_code = HttpTool.get(url, headers=headers, retFormat='text', allow_redirects=False)
     return html, status_code
 
 

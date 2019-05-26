@@ -11,6 +11,9 @@ def main(cid):
     if status_code == 404:
         print(f'id {cid} company not exists')
         return
+    elif status_code == 302:
+        print(f'302 redirects to login page')
+        return
     soup = BeautifulSoup(html, 'lxml')
     company_name, phone, email, web, addr, summary = extract_company_top(soup)
     reg_capital, found_date, status, reg_code, society_code, ogn_code, tax_code, company_type, \
@@ -50,5 +53,4 @@ def main(cid):
 
 
 if __name__ == "__main__":
-    main(1)
-    # main(101398822)
+    main(101398822)
