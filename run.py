@@ -7,7 +7,10 @@ from tyc import get_company_text, extract_company_top, extract_company_detail
 
 
 def main(cid):
-    html = get_company_text(cid)
+    html, status_code = get_company_text(cid)
+    if status_code == 404:
+        print(f'id {cid} company not exists')
+        return
     soup = BeautifulSoup(html, 'lxml')
     company_name, phone, email, web, addr, summary = extract_company_top(soup)
     reg_capital, found_date, status, reg_code, society_code, ogn_code, tax_code, company_type, \
@@ -47,5 +50,5 @@ def main(cid):
 
 
 if __name__ == "__main__":
-    main(841099016)
+    main(1)
     # main(101398822)

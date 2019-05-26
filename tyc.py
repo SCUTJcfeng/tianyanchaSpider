@@ -9,8 +9,8 @@ base_url = 'https://www.tianyancha.com/company/'
 
 def get_company_text(cid):
     url = base_url + str(cid)
-    html = HttpTool.get(url, headers=headers, retFormat='text')
-    return html
+    html, status_code = HttpTool.get(url, headers=headers, retFormat='text')
+    return html, status_code
 
 
 def extract_company_top(soup):

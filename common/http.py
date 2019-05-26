@@ -14,7 +14,7 @@ class HttpTool:
             res = requests.get(url, params=params, headers=headers, timeout=timeout)
         except:
             traceback.print_exc()
-        return HttpTool.beforeReturn(res, retFormat)
+        return HttpTool.beforeReturn(res, retFormat), res.status_code
 
     @staticmethod
     def post(url, data=None, json=None, headers=None, retFormat='text', timeout=10, verify=True):
