@@ -30,7 +30,11 @@ def extract_company_top(soup):
         web = web_list[1].string
     else:
         web = web_list[2].string
-    addr = web_addr.find(class_='in-block sup-ie-company-header-child-2').div.div.string
+    addr_div = web_addr.find(class_='in-block sup-ie-company-header-child-2')
+    if addr_div.div:
+        addr = addr_div.div.div.string
+    else:
+        addr = addr_div.find_all('span')[1].string
     summary_div = detail.find(class_='summary')
     summary = summary_div.find_all('span')[1].string
     if summary is None:
@@ -40,6 +44,8 @@ def extract_company_top(soup):
 
 def extract_company_detail(soup):
     container = soup.find(id='_container_baseInfo')
+    if not container:
+        return ['' for i in range(20)]
     tr_list = container.find_all('table')[1].find_all('tr')
 
     capital_date_td_list = tr_list[0].find_all('td')
