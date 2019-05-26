@@ -23,3 +23,7 @@ def create_path(base, filename):
 
 def check_path(path):
     return os.path.exists(path)
+
+
+def strip_blank(string):
+    return ''.join(string.split())
